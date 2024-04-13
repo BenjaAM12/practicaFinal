@@ -14,10 +14,10 @@ jobs:
 
       - name: Build and Deploy
         run: |
-          # Aquí pondrías los comandos necesarios para construir tu sitio web si los tienes
-          # Por ejemplo, si es un sitio HTML simple, puedes copiar los archivos a una carpeta de salida
-          mkdir public
-          cp * public/
+
+          mkdir -p public
+          
+          cp -r * public/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
