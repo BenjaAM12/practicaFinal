@@ -1,26 +1,27 @@
-name: Despliegue a GitHub Pages
+name: Run tests
 
 on:
   push:
     branches:
-      - development
+      - '*'
 
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Repo
+      - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Build and Deploy
-        run: |
+      - name: Restaurar dependencias
+        run: dotnet restore
 
-          mkdir -p public
-          
-          cp -r * public/
+      - name: Compilar y ejecutar pruebas
+        run: dotnet test
 
-      - name: Deploy to GitHub Pages
+      - name: Desplegar a GitHub Pages si las pruebas son exitosas
+        if: success()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./page/
