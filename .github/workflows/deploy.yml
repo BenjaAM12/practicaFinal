@@ -14,14 +14,11 @@ jobs:
 
       - name: Build and Deploy
         run: |
-          # Crear el directorio 'public' si no existe
-          mkdir -p public
-          # Copiar archivos necesarios al directorio 'public'
-          cp practicaFinal/index.html public/
-          cp practicaFinal/test.js public/
+          cp practicaFinal/index.html 
+          cp practicaFinal/test.js 
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./
