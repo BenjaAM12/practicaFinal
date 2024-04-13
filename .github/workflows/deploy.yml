@@ -1,0 +1,26 @@
+name: Despliegue a GitHub Pages
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Build and Deploy
+        run: |
+          # Aquí pondrías los comandos necesarios para construir tu sitio web si los tienes
+          # Por ejemplo, si es un sitio HTML simple, puedes copiar los archivos a una carpeta de salida
+          mkdir public
+          cp * public/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
